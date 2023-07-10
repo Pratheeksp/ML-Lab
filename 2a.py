@@ -1,9 +1,15 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
 
-x=np.linspace(-3,3,100)
-y=np.linspace(-3,3,100)
-X,Y=np.meshgrid(x,y)
-Z=np.exp(-(X**2 + Y**2))
-plt.contour(X,Y,Z)
+dataset = pd.read_csv('./ToyotaCorolla.csv')
+x = dataset['KM']
+y = dataset['Weight']
+z = dataset['Price']
+
+plt.tricontourf(x, y, z, levels=20, cmap='jet')
+plt.colorbar(label='Price')
+plt.xlabel('KM')
+plt.ylabel('Weight')
+plt.title('Contour Plot of Price vs. Age and KM')
 plt.show()
